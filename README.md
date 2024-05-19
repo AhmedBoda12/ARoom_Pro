@@ -1,6 +1,6 @@
 # ARoom_Pro
 
-A new Flutter project.
+The software being specified is the AR Furniture Shopper application, designed to revolutionize the furniture shopping experience through the integration of augmented reality (AR) technology. furniture items directly from their smartphones, enhancing convenience, accuracy, and engagement in the furniture shopping process.
 
 ## Getting Started
 
