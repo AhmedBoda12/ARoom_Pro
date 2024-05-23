@@ -9,13 +9,24 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool isScure = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Form(
+        key: _formKey,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -40,6 +51,14 @@ class _LoginFormState extends State<LoginForm> {
                 height: 20,
               ),
               TextFormField(
+                controller: _emailController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your email';
+                  } else {
+                    return null;
+                  }
+                },
                 keyboardType: TextInputType.emailAddress,
                 autofillHints: const [AutofillHints.email],
                 decoration: InputDecoration(
@@ -61,6 +80,14 @@ class _LoginFormState extends State<LoginForm> {
                 height: 16,
               ),
               TextFormField(
+                controller: _passwordController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your password';
+                  } else {
+                    return null;
+                  }
+                },
                 obscureText: isScure,
                 keyboardType: TextInputType.visiblePassword,
                 autofillHints: const [AutofillHints.password],
@@ -93,7 +120,11 @@ class _LoginFormState extends State<LoginForm> {
                 height: 20,
               ),
               FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                  }
+                },
                 style: FilledButton.styleFrom(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
@@ -113,7 +144,10 @@ class _LoginFormState extends State<LoginForm> {
                 height: 24,
               ),
               const SocialButtons(),
-              TextButton(onPressed: () {}, child: Text('Forgot Password?'))
+              TextButton(
+                onPressed: () {},
+                child: const Text('Forgot Password?'),
+              )
             ],
           ),
         ),

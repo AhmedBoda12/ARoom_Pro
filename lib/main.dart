@@ -1,9 +1,14 @@
+import 'package:aroom_pro/firebase_options.dart';
 import 'package:aroom_pro/helper/constants.dart';
 import 'package:aroom_pro/views/auth_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ARoomProApp());
 }
 
