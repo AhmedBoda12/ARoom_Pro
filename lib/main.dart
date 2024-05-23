@@ -1,10 +1,16 @@
+import 'package:aroom_pro/firebase_options.dart';
 import 'package:aroom_pro/helper/constants.dart';
 import 'package:aroom_pro/views/auth_page.dart';
+import 'package:aroom_pro/views/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
   runApp(const ARoomProApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class ARoomProApp extends StatelessWidget {
@@ -35,6 +41,7 @@ class ARoomProApp extends StatelessWidget {
       initialRoute: AuthPage.routeName,
       routes: {
         AuthPage.routeName: (context) => const AuthPage(),
+        HomePage.routeName: (context) => const HomePage(),
       },
     );
   }
