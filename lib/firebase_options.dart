@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -72,10 +69,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDKgMB7x9pxkVSkjDgG8Wky6L2y0PajLi8',
-    appId: '1:884502683699:ios:027ae48bedd4980ddd4346',
+    appId: '1:884502683699:ios:5cc514762f7079eddd4346',
     messagingSenderId: '884502683699',
     projectId: 'aroom-pro',
     storageBucket: 'aroom-pro.appspot.com',
-    iosBundleId: 'com.example.aroomPro.RunnerTests',
+    iosBundleId: 'com.example.aroomPro',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDxGDzisQ3vkvewLRmcVmKxGxCDbJ01ctw',
+    appId: '1:884502683699:web:cd5c002528890eeedd4346',
+    messagingSenderId: '884502683699',
+    projectId: 'aroom-pro',
+    authDomain: 'aroom-pro.firebaseapp.com',
+    storageBucket: 'aroom-pro.appspot.com',
+    measurementId: 'G-VPSL4RG1ZB',
+  );
+
 }
