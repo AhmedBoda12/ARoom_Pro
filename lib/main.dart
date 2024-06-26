@@ -1,6 +1,6 @@
 import 'package:aroom_pro/helper/constants.dart';
 import 'package:aroom_pro/views/auth_page.dart';
-import 'package:aroom_pro/views/home_page.dart';
+import 'package:aroom_pro/views/intial_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -45,14 +45,14 @@ class ARoomProApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const HomePage();
+            return const IntialPage();
           }
           return const AuthPage();
         },
       ),
       routes: {
         AuthPage.routeName: (context) => const AuthPage(),
-        HomePage.routeName: (context) => const HomePage(),
+        IntialPage.routeName: (context) => const IntialPage(),
       },
     );
   }
