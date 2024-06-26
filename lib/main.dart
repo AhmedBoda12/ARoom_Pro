@@ -36,6 +36,9 @@ class ARoomProApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xfff15c22),
           primary: internationalOrange[500],
+          secondary: internationalOrange[300],
+          error: Colors.red,
+          onPrimary: Colors.white,
         ),
         textTheme: GoogleFonts.readexProTextTheme(
           Theme.of(context).textTheme,

@@ -1,4 +1,7 @@
+import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
+import 'package:aroom_pro/views/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class IntialPage extends StatefulWidget {
@@ -23,7 +26,28 @@ class _IntialPageState extends State<IntialPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.menu,
+            color: Theme.of(context).primaryColor,
+          ),
+          iconSize: 30,
+        ),
+        // title: Image.asset(
+        //   'assets/aroom_logo.png',
+        //   width: 100,
+        //   height: 100,
+        // ),
+        // centerTitle: true,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: CircleAvatar(),
+          )
+        ],
+      ),
       bottomNavigationBar: StylishBottomBar(
         items: [
           BottomBarItem(
@@ -51,13 +75,13 @@ class _IntialPageState extends State<IntialPage> {
           ),
           BottomBarItem(
               icon: const Icon(
-                Icons.person_outline_rounded,
+                Icons.shopping_cart_outlined,
               ),
               selectedIcon: const Icon(
-                Icons.person,
+                Icons.shopping_cart,
               ),
               selectedColor: Theme.of(context).primaryColor,
-              title: const Text('Profile')),
+              title: const Text('Cart')),
         ],
         option: AnimatedBarOptions(
           iconSize: 25,
@@ -80,27 +104,32 @@ class _IntialPageState extends State<IntialPage> {
           });
         },
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 12),
-        child: FloatingActionButton(
-          onPressed: () {},
-          // shape: const CircleBorder(),
-          backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(
-            Icons.view_in_ar_rounded,
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
-        ),
-      ),
+      floatingActionButton: MediaQuery.of(context).viewInsets.bottom != 0
+          ? null
+          : Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: FloatingActionButton(
+                onPressed: () {},
+                shape: const CircleBorder(),
+                backgroundColor: Theme.of(context).primaryColor,
+                child: Icon(
+                  Icons.view_in_ar_rounded,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SafeArea(
         child: PageView(
           controller: controller,
-          children: const [
-            Center(child: Text('Home')),
-            Center(child: Text('Star')),
-            Center(child: Text('Style')),
-            Center(child: Text('Profile')),
+          children: [
+            BlocProvider.value(
+              value: CategoryCubit()..loadCategories(),
+              child: const HomePage(),
+            ),
+            const Center(child: Text('Fav')),
+            const Center(child: Text('Notifications')),
+            const Center(child: Text('Cart')),
           ],
         ),
       ),
