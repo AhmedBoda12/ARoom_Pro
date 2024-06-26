@@ -1,8 +1,10 @@
 import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
+import 'package:aroom_pro/cubits/product_cubit/cubit/product_cubit.dart';
 import 'package:aroom_pro/widgets/custom_search_bar.dart';
 import 'package:aroom_pro/widgets/fade_widget.dart';
 import 'package:aroom_pro/widgets/home_page_widgets/category_chips.dart';
 import 'package:aroom_pro/widgets/home_page_widgets/image_slider.dart';
+import 'package:aroom_pro/widgets/loading_widget.dart';
 import 'package:aroom_pro/widgets/product_widgets/products_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,10 +46,34 @@ class HomePage extends StatelessWidget {
           },
         ),
         const SizedBox(
-          height: 16,
+          height: 8,
         ),
-        const Expanded(
-          child: ProductsGridview(),
+        BlocBuilder<ProductCubit, ProductState>(
+          builder: (context, state) {
+            if (state is ProductInitial) {
+              return const LoadingWidget();
+            } else if (state is ProductError) {
+              return Center(
+                child: Text(
+                  state.message,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            } else if (state is Productloaded) {
+              return Expanded(
+                child: ProductsGridview(
+                  products: state.products,
+                ),
+              );
+            } else {
+              return const Center(
+                child: Text(
+                  'Opps there is an Error, Please try again!',
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }
+          },
         ),
       ],
     );

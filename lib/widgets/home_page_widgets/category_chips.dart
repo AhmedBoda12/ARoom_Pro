@@ -47,7 +47,7 @@ class _CategoryChipsState extends State<CategoryChips> {
                       )
                     : null,
                 elevation: 2,
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor: Theme.of(context).colorScheme.primary,
                 labelStyle: TextStyle(
                   fontSize: 16,
                   color: selected.isNotEmpty && selected[index]
@@ -57,18 +57,14 @@ class _CategoryChipsState extends State<CategoryChips> {
                 side: BorderSide(
                   width: 2.5,
                   color: selected.isNotEmpty && selected[index]
-                      ? Theme.of(context).colorScheme.secondary
+                      ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.secondary,
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),
                 showCheckmark: false,
-                label: Row(
-                  children: [
-                    Text(widget.chips[index].categoryName!),
-                  ],
-                ),
+                label: Text(widget.chips[index].categoryName!),
                 selected: selected.isNotEmpty && selected[index],
                 onSelected: (bool isSelected) {
                   setState(() {

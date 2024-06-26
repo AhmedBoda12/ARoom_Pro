@@ -1,4 +1,5 @@
 import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
+import 'package:aroom_pro/cubits/product_cubit/cubit/product_cubit.dart';
 import 'package:aroom_pro/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -123,8 +124,15 @@ class _IntialPageState extends State<IntialPage> {
         child: PageView(
           controller: controller,
           children: [
-            BlocProvider.value(
-              value: CategoryCubit()..loadCategories(),
+            MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: CategoryCubit()..loadCategories(),
+                ),
+                BlocProvider.value(
+                  value: ProductCubit()..getAllProducts(),
+                ),
+              ],
               child: const HomePage(),
             ),
             const Center(child: Text('Fav')),
