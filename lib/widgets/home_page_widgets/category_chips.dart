@@ -2,26 +2,27 @@ import 'package:aroom_pro/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryChips extends StatefulWidget {
-  const CategoryChips(
-      {super.key, required this.chips, required this.onSelected});
+  const CategoryChips({
+    super.key,
+    required this.chips,
+    required this.onSelected,
+  });
+
   final List<CategoryModel> chips;
   final ValueChanged<String?> onSelected;
+
   @override
   State<CategoryChips> createState() => _CategoryChipsState();
 }
 
 class _CategoryChipsState extends State<CategoryChips> {
-  late List<bool> selected;
+  int? selectedChipIndex;
 
   @override
   void initState() {
     super.initState();
-    selected = List<bool>.filled(widget.chips.length, false);
-    if (selected.isNotEmpty) {
-      selected[0] = true;
-      widget.onSelected(widget
-          .chips[0].id); // Call the callback function with the first chip's ID
-    }
+    selectedChipIndex = 0; // Select the first chip by default
+    widget.onSelected(widget.chips[0].id); // Return the first chip's ID
   }
 
   @override
@@ -41,7 +42,7 @@ class _CategoryChipsState extends State<CategoryChips> {
                     ? Icon(
                         widget.chips[index].icon,
                         size: 22,
-                        color: selected.isNotEmpty && selected[index]
+                        color: selectedChipIndex == index
                             ? Theme.of(context).colorScheme.onPrimary
                             : Theme.of(context).colorScheme.primary,
                       )
@@ -50,13 +51,13 @@ class _CategoryChipsState extends State<CategoryChips> {
                 selectedColor: Theme.of(context).colorScheme.primary,
                 labelStyle: TextStyle(
                   fontSize: 16,
-                  color: selected.isNotEmpty && selected[index]
+                  color: selectedChipIndex == index
                       ? Theme.of(context).colorScheme.onPrimary
                       : Theme.of(context).colorScheme.primary,
                 ),
                 side: BorderSide(
                   width: 2.5,
-                  color: selected.isNotEmpty && selected[index]
+                  color: selectedChipIndex == index
                       ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.secondary,
                 ),
@@ -65,20 +66,18 @@ class _CategoryChipsState extends State<CategoryChips> {
                 ),
                 showCheckmark: false,
                 label: Text(widget.chips[index].categoryName!),
-                selected: selected.isNotEmpty && selected[index],
+                selected: selectedChipIndex == index,
                 onSelected: (bool isSelected) {
                   setState(() {
-                    for (int i = 0; i < selected.length; i++) {
-                      if (i == index) {
-                        selected[i] = isSelected;
-                        if (isSelected) {
-                          widget.onSelected(
-                              widget.chips[i].id); // Call the callback function
-                        }
-                      } else {
-                        widget.onSelected(null);
-                        selected[i] = false; // Deselect other chips
-                      }
+                    if (isSelected) {
+                      selectedChipIndex = index;
+                      widget.onSelected(widget.chips[index].id);
+                    } else if (selectedChipIndex == index) {
+                      selectedChipIndex = 0;
+                      widget.onSelected(widget.chips[0].id);
+                    } else {
+                      selectedChipIndex = null;
+                      widget.onSelected(null);
                     }
                   });
                 },

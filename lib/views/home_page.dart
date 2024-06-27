@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
 import 'package:aroom_pro/cubits/product_cubit/cubit/product_cubit.dart';
 import 'package:aroom_pro/widgets/custom_search_bar.dart';
@@ -9,8 +11,15 @@ import 'package:aroom_pro/widgets/product_widgets/products_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String? selectedCategory = '';
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +41,14 @@ class HomePage extends StatelessWidget {
               );
             } else if (state is CategoryLoaded) {
               return CategoryChips(
-                  chips: state.categories, onSelected: (value) {});
+                  chips: state.categories,
+                  onSelected: (value) {
+                    Future.delayed(Duration.zero, () async {
+                      setState(() {
+                        selectedCategory = value;
+                      });
+                    });
+                  });
             } else if (state is CategoryError) {
               return Center(
                 child: Text(
@@ -60,9 +76,12 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else if (state is Productloaded) {
+              log(selectedCategory.toString());
+
               return Expanded(
                 child: ProductsGridview(
                   products: state.products,
+                  categoryId: selectedCategory,
                 ),
               );
             } else {

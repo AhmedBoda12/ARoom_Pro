@@ -45,7 +45,7 @@ class _IntialPageState extends State<IntialPage> {
         // centerTitle: true,
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: InkWell(
               onTap: () =>
                   Navigator.pushNamed(context, UserProfilePage.routeName),

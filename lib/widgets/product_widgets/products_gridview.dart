@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aroom_pro/models/product_model.dart';
 import 'package:aroom_pro/widgets/product_widgets/product_card.dart';
 import 'package:flutter/widgets.dart';
@@ -6,8 +8,10 @@ class ProductsGridview extends StatelessWidget {
   const ProductsGridview({
     super.key,
     required this.products,
+    this.categoryId,
   });
   final List<ProductModel> products;
+  final String? categoryId;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -22,9 +26,26 @@ class ProductsGridview extends StatelessWidget {
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        return ProductCard(
-          product: products[index],
-        );
+        List<ProductModel> filteredProducts = [];
+        if (categoryId != null) {
+          if (categoryId == 'b4erAEHt6SQ2ZyklR3H4') {
+            return ProductCard(
+              product: products[index],
+            );
+          }
+          filteredProducts =
+              products.where((e) => e.categoryId == categoryId!).toList();
+          log(filteredProducts.toString());
+          if (filteredProducts.isEmpty) {
+            return Container();
+          } else {
+            return ProductCard(product: filteredProducts[index]);
+          }
+        } else {
+          return ProductCard(
+            product: products[index],
+          );
+        }
       },
     );
   }
