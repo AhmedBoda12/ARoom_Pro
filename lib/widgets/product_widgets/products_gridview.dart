@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:aroom_pro/models/product_model.dart';
+import 'package:aroom_pro/widgets/empty_widget.dart';
 import 'package:aroom_pro/widgets/product_widgets/product_card.dart';
 import 'package:flutter/widgets.dart';
 
@@ -37,7 +38,8 @@ class ProductsGridview extends StatelessWidget {
               products.where((e) => e.categoryId == categoryId!).toList();
           log(filteredProducts.toString());
           if (filteredProducts.isEmpty) {
-            return Container();
+            return const EmptyWidget(
+                text: 'No products', image: 'assets/aroom_logo.png');
           } else {
             return ProductCard(product: filteredProducts[index]);
           }
