@@ -1,6 +1,12 @@
+import 'dart:developer';
+
 import 'package:aroom_pro/helper/constants.dart';
+import 'package:aroom_pro/routes.dart';
 import 'package:aroom_pro/views/auth_page.dart';
+import 'package:aroom_pro/views/dashboardPage.dart';
 import 'package:aroom_pro/views/intial_page.dart';
+import 'package:aroom_pro/widgets/loading_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -50,17 +56,38 @@ class ARoomProApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             FlutterNativeSplash.remove();
-
-            return const IntialPage();
+            final user = snapshot.data;
+            return FutureBuilder(
+                future: getUserRole(user!.uid),
+                builder: (context, roleSnapshot) {
+                  String? role = roleSnapshot.data;
+                  if (roleSnapshot.connectionState == ConnectionState.waiting) {
+                    return const LoadingWidget();
+                  }
+                  if (roleSnapshot.hasData) {
+                    if (role == 'Admin') {
+                      return const DashboardPage();
+                    }
+                  }
+                  return const IntialPage();
+                });
           }
           FlutterNativeSplash.remove();
           return const AuthPage();
         },
       ),
-      routes: {
-        AuthPage.routeName: (context) => const AuthPage(),
-        IntialPage.routeName: (context) => const IntialPage(),
-      },
+      routes: appRoutes,
     );
+  }
+
+  Future<String?> getUserRole(String uid) async {
+    try {
+      DocumentSnapshot doc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      return doc['role'];
+    } catch (e) {
+      log('Error fetching user role: $e');
+      return null;
+    }
   }
 }

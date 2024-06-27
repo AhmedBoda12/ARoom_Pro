@@ -1,5 +1,7 @@
+import 'package:aroom_pro/models/user_model.dart';
 import 'package:aroom_pro/widgets/loading_widget.dart';
 import 'package:aroom_pro/widgets/register_widgets/social_buttons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -161,11 +163,24 @@ class _SignupFormState extends State<SignupForm> {
 
   void _signUpWithEmailAndPassword(
       String email, String password, BuildContext context) async {
+    final db = FirebaseFirestore.instance;
+
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      final UserModel userModel = UserModel(
+        id: userCredential.user!.uid,
+        email: email,
+        role: 'User',
+      );
+
+      await db
+          .collection('Users')
+          .doc(userCredential.user!.uid)
+          .set(userModel.toFirestore());
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
         showDialog(
