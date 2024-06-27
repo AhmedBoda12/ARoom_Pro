@@ -62,7 +62,7 @@ class ARoomProApp extends StatelessWidget {
                 builder: (context, roleSnapshot) {
                   String? role = roleSnapshot.data;
                   if (roleSnapshot.connectionState == ConnectionState.waiting) {
-                    return const LoadingWidget();
+                    return const Scaffold(body: LoadingWidget());
                   }
                   if (roleSnapshot.hasData) {
                     if (role == 'Admin') {

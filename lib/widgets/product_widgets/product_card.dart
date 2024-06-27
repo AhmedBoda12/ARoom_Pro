@@ -1,5 +1,6 @@
 import 'package:aroom_pro/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
@@ -75,8 +76,9 @@ class ProductCard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Image.network(
-                  product.image.path,
+                FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: product.image.path,
                   fit: BoxFit.cover,
                   height: 250,
                 ),

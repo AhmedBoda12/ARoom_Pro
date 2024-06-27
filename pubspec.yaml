@@ -46,6 +46,7 @@ dependencies:
   cloud_firestore: ^5.0.2
   flutter_bloc: ^8.1.6
   firebase_storage: ^12.1.0
+  transparent_image: ^2.0.1
 
 
 flutter_native_splash:
