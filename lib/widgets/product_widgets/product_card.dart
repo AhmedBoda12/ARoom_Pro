@@ -75,8 +75,8 @@ class ProductCard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Image.asset(
-                  'assets/chair.png',
+                Image.network(
+                  product.image.path,
                   fit: BoxFit.cover,
                   height: 250,
                 ),
