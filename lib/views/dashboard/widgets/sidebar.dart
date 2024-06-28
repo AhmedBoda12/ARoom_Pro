@@ -1,23 +1,16 @@
-import 'package:aroom_pro/views/dashboard/widgets/menu_list.dart';
-import 'package:aroom_pro/views/dashboard/widgets/menu_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'menu_tile.dart';
 
-class Sidebar extends StatefulWidget {
-  const Sidebar({super.key});
+class Sidebar extends StatelessWidget {
+  final String activeMenu;
+  final Function(String) setActiveMenu;
 
-  @override
-  State<Sidebar> createState() => _SidebarState();
-}
-
-class _SidebarState extends State<Sidebar> {
-  String activeMenu = 'Home';
-
-  void setActiveMenu(String menu) {
-    setState(() {
-      activeMenu = menu;
-    });
-  }
+  const Sidebar({
+    super.key,
+    required this.activeMenu,
+    required this.setActiveMenu,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +30,17 @@ class _SidebarState extends State<Sidebar> {
             const SizedBox(
               height: 8,
             ),
-            MenuList(
-              title: 'Products',
-              icon: Icons.category_rounded,
-              children: [
-                MenuTile(
-                  title: 'Shop',
-                  icon: Icons.store_mall_directory_rounded,
-                  isActive: activeMenu == 'Shop',
-                  onPressed: () => setActiveMenu('Shop'),
-                ),
-                MenuTile(
-                  title: 'Add Product',
-                  icon: Icons.add_box_rounded,
-                  isActive: activeMenu == 'Add Product',
-                  onPressed: () => setActiveMenu('Add Product'),
-                ),
-              ],
+            MenuTile(
+              title: 'Shop',
+              icon: Icons.store_mall_directory_rounded,
+              isActive: activeMenu == 'Shop',
+              onPressed: () => setActiveMenu('Shop'),
+            ),
+            MenuTile(
+              title: 'Add Product',
+              icon: Icons.add_box_rounded,
+              isActive: activeMenu == 'Add Product',
+              onPressed: () => setActiveMenu('Add Product'),
             ),
             const SizedBox(
               height: 8,
@@ -83,20 +70,22 @@ class _SidebarState extends State<Sidebar> {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ),
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    },
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                      },
-                      child: Text(
-                        'Logout',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                      )),
+                    ),
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

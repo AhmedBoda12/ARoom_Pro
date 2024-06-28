@@ -1,20 +1,67 @@
-import 'package:aroom_pro/constants/ghaps.dart';
+import 'package:aroom_pro/views/dashboard/add_product_page.dart';
+import 'package:flutter/material.dart';
 import 'package:aroom_pro/views/dashboard/widgets/overview.dart';
 import 'package:aroom_pro/views/dashboard/widgets/popular_products.dart';
 import 'package:aroom_pro/views/dashboard/widgets/recent_feedback.dart';
 import 'package:aroom_pro/views/dashboard/widgets/sidebar.dart';
-import 'package:flutter/material.dart';
 
 final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
   @override
+  _DashboardPageState createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  String activeMenu = 'Home';
+
+  void setActiveMenu(String menu) {
+    setState(() {
+      activeMenu = menu;
+    });
+    _drawerKey.currentState?.closeDrawer();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Widget content;
+    switch (activeMenu) {
+      case 'Home':
+        content = ListView(
+          children: const [
+            Overview(),
+            SizedBox(height: 16),
+            PopularProducts(),
+            SizedBox(height: 16),
+            RecentFeedback(),
+          ],
+        );
+        break;
+      case 'Shop':
+        content = const Center(child: Text('Shop Page'));
+        break;
+      case 'Add Product':
+        content = const AddProductPage();
+        break;
+      case 'Customers':
+        content = const Center(child: Text('Customers Page'));
+        break;
+      case 'Orders':
+        content = const Center(child: Text('Orders Page'));
+        break;
+      default:
+        content = const Center(child: Text('Page not found'));
+        break;
+    }
+
     return Scaffold(
       key: _drawerKey,
-      drawer: const Sidebar(),
+      drawer: Sidebar(
+        activeMenu: activeMenu,
+        setActiveMenu: setActiveMenu,
+      ),
       appBar: AppBar(
         title: const Text('Dashboard'),
         leading: IconButton(
@@ -28,31 +75,15 @@ class DashboardPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.notifications,
-                color: Theme.of(context).primaryColor,
-              )),
-          // IconButton(
-          //   icon: Icon(
-          //     Icons.logout,
-          //     color: Theme.of(context).primaryColor,
-          //   ),
-          //   onPressed: () {
-          //     FirebaseAuth.instance.signOut();
-          //   },
-          // ),
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
         ],
       ),
-      body: ListView(
-        children: const [
-          Overview(),
-          gapH16,
-          PopularProducts(),
-          gapH16,
-          RecentFeedback(),
-        ],
-      ),
+      body: content,
     );
   }
 }
