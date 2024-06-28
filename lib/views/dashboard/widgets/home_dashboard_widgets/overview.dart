@@ -1,10 +1,10 @@
-import 'package:aroom_pro/views/dashboard/widgets/overview_tabs.dart';
-import 'package:aroom_pro/views/dashboard/widgets/section_title.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/overview_tabs.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/section_title.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_colors.dart';
-import '../../../constants/defaults.dart';
-import '../../../constants/ghaps.dart';
+import '../../../../constants/app_colors.dart';
+import '../../../../constants/defaults.dart';
+import '../../../../constants/ghaps.dart';
 
 class Overview extends StatelessWidget {
   const Overview({super.key});

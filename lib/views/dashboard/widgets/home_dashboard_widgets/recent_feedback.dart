@@ -1,12 +1,12 @@
 import 'package:aroom_pro/constants/app_colors.dart';
 import 'package:aroom_pro/constants/defaults.dart';
 import 'package:aroom_pro/constants/ghaps.dart';
-import 'package:aroom_pro/views/dashboard/widgets/popular_product_item.dart';
-import 'package:aroom_pro/views/dashboard/widgets/section_title.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/feedback_item.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/section_title.dart';
 import 'package:flutter/material.dart';
 
-class PopularProducts extends StatelessWidget {
-  const PopularProducts({super.key});
+class RecentFeedback extends StatelessWidget {
+  const RecentFeedback({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,41 +26,31 @@ class PopularProducts extends StatelessWidget {
               horizontal: AppDefaults.padding * 0.5,
             ),
             child: SectionTitle(
-              title: "Popular products",
-              color: AppColors.secondaryLavender,
+              title: "Recent Feedback",
+              color: AppColors.secondaryPaleYellow,
             ),
           ),
           gapH16,
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDefaults.padding * 0.5,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Products', style: Theme.of(context).textTheme.labelSmall),
-                Text('Status', style: Theme.of(context).textTheme.labelSmall),
-              ],
-            ),
-          ),
-          gapH8,
-          const Divider(),
           ListView.builder(
-            itemCount: 4,
+            itemCount: 2,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, index) {
-              return PopularProductItem(
-                name: 'Product X',
-                price: '988 LE',
-                imageSrc: 'assets/aroom_logo.png',
-                isActive: index % 2 == 0,
-                onPressed: () {},
+              return FeedbackItem(
+                name: 'Name',
+                username: 'Email',
+                time: '1h',
+                product: 'Product Name',
+                comment: 'Comment',
+                imageSrc:
+                    'https://th.bing.com/th/id/OIP.IGNf7GuQaCqz_RPq5wCkPgAAAA?rs=1&pid=ImgDetMain',
+                onProfilePressed: () {},
+                onProductPressed: () {},
               );
             },
           ),
-          gapH16,
+          gapH8,
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: AppDefaults.padding * 0.5,
@@ -69,7 +59,7 @@ class PopularProducts extends StatelessWidget {
             child: OutlinedButton(
               onPressed: () {},
               child: Text(
-                "All products",
+                "View all",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),

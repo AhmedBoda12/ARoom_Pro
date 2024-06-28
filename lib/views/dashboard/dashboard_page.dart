@@ -1,8 +1,8 @@
 import 'package:aroom_pro/views/dashboard/add_product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:aroom_pro/views/dashboard/widgets/overview.dart';
-import 'package:aroom_pro/views/dashboard/widgets/popular_products.dart';
-import 'package:aroom_pro/views/dashboard/widgets/recent_feedback.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/overview.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/popular_products.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/recent_feedback.dart';
 import 'package:aroom_pro/views/dashboard/widgets/sidebar.dart';
 
 final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
@@ -11,7 +11,7 @@ class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  State<DashboardPage> createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<DashboardPage> {
@@ -63,7 +63,7 @@ class _DashboardPageState extends State<DashboardPage> {
         setActiveMenu: setActiveMenu,
       ),
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text(activeMenu),
         leading: IconButton(
           onPressed: () {
             _drawerKey.currentState!.openDrawer();

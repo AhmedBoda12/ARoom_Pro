@@ -1,7 +1,7 @@
 import 'package:aroom_pro/constants/app_colors.dart';
 import 'package:aroom_pro/constants/defaults.dart';
 import 'package:aroom_pro/constants/ghaps.dart';
-import 'package:aroom_pro/views/dashboard/widgets/customer_rounded_avatar.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/customer_rounded_avatar.dart';
 import 'package:flutter/material.dart';
 
 class PopularProductItem extends StatefulWidget {

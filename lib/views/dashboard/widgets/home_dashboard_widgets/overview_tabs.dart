@@ -1,11 +1,11 @@
 import 'package:aroom_pro/constants/ghaps.dart';
-import 'package:aroom_pro/views/dashboard/widgets/customer_overview.dart';
-import 'package:aroom_pro/views/dashboard/widgets/revenue_line_chart.dart';
-import 'package:aroom_pro/views/dashboard/widgets/tab_with_growth.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/customer_overview.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/revenue_line_chart.dart';
+import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/tab_with_growth.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_colors.dart';
-import '../../../constants/defaults.dart';
+import '../../../../constants/app_colors.dart';
+import '../../../../constants/defaults.dart';
 
 class OverviewTabs extends StatefulWidget {
   const OverviewTabs({super.key});
