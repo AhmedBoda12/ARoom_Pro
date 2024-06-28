@@ -1,6 +1,7 @@
 import 'package:aroom_pro/constants/ghaps.dart';
 import 'package:aroom_pro/views/dashboard/widgets/overview.dart';
 import 'package:aroom_pro/views/dashboard/widgets/popular_products.dart';
+import 'package:aroom_pro/views/dashboard/widgets/recent_feedback.dart';
 import 'package:aroom_pro/views/dashboard/widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,8 @@ class DashboardPage extends StatelessWidget {
           Overview(),
           gapH16,
           PopularProducts(),
+          gapH16,
+          RecentFeedback(),
         ],
       ),
     );
