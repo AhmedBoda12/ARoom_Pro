@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:aroom_pro/helper/constants.dart';
 import 'package:aroom_pro/routes.dart';
 import 'package:aroom_pro/views/auth_page.dart';
-import 'package:aroom_pro/views/dashboard_page.dart';
+import 'package:aroom_pro/views/dashboard/dashboard_page.dart';
 import 'package:aroom_pro/views/intial_page.dart';
 import 'package:aroom_pro/widgets/loading_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
