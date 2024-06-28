@@ -24,7 +24,7 @@ class CustomersOverview extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const TextSpan(text: " with a \npersonal message 😎")
+                    const TextSpan(text: " with a \npersonal message")
                   ],
                 ),
               ),
@@ -66,7 +66,7 @@ class CustomersOverview extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    fixedSize: const Size(64, 64),
+                    // fixedSize: const Size(65, 65),
                     shape: const CircleBorder(),
                   ),
                   child: const Icon(Icons.arrow_forward_outlined),

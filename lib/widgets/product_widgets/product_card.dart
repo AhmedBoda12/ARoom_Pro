@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
           width: double.infinity,
           margin: const EdgeInsets.only(top: 50),
           decoration: BoxDecoration(
-            color: Color(0xff4C4B39EF),
+            color: const Color(0xff4C4B39EF),
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Padding(
@@ -24,7 +24,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Lamps',
                   style: TextStyle(
                     fontFamily: 'Readex Pro',

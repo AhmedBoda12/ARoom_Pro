@@ -60,7 +60,6 @@ class _OverviewTabsState extends State<OverviewTabs>
               ),
               TabWithGrowth(
                 title: "Revenue",
-                iconSrc: "assets/icons/activity_light.svg",
                 iconBgColor: AppColors.secondaryLavender,
                 amount: "\$128K",
                 growthPercentage: "2.7%",
