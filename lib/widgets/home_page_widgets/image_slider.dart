@@ -1,3 +1,4 @@
+import 'package:aroom_pro/constants/defaults.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -14,11 +15,29 @@ class _ImageSliderState extends State<ImageSlider> {
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
+        viewportFraction: 1,
       ),
       items: [1, 2, 3, 4, 5].map((i) {
         return Builder(
           builder: (BuildContext context) {
-            return Image.asset('assets/aroom_logo.png');
+            return Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppDefaults.padding),
+              child: Container(
+                width: double.infinity,
+                height: 150,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        Theme.of(context).colorScheme.secondary
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius: BorderRadius.circular(25)),
+              ),
+            );
           },
         );
       }).toList(),
