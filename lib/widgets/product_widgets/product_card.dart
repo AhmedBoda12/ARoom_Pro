@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.product});
+  const ProductCard({
+    super.key,
+    required this.product,
+    required this.categoryName,
+  });
   final ProductModel product;
+  final String categoryName;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,9 +29,9 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Lamps',
-                  style: TextStyle(
+                Text(
+                  categoryName,
+                  style: const TextStyle(
                     fontFamily: 'Readex Pro',
                     fontSize: 17,
                     letterSpacing: 0,
@@ -70,7 +75,6 @@ class ProductCard extends StatelessWidget {
         ),
         Positioned(
           bottom: 80,
-          right: -80,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
@@ -80,7 +84,7 @@ class ProductCard extends StatelessWidget {
                   placeholder: kTransparentImage,
                   image: product.image.path,
                   fit: BoxFit.cover,
-                  height: 250,
+                  height: 220,
                 ),
               ],
             ),

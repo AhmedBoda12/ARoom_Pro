@@ -9,12 +9,12 @@ class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitial());
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  List<CategoryModel> categories = [];
   Future<void> loadCategories() async {
     try {
       QuerySnapshot snapshot =
           await _firestore.collection('Categories').orderBy('CreatedAt').get();
-      List<CategoryModel> categories =
+      categories =
           snapshot.docs.map((doc) => CategoryModel.fromFirestore(doc)).toList();
       emit(CategoryLoaded(categories));
     } catch (e) {

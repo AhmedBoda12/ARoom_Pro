@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
 import 'package:aroom_pro/cubits/product_cubit/cubit/product_cubit.dart';
 import 'package:aroom_pro/widgets/custom_search_bar.dart';
@@ -76,8 +74,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             } else if (state is Productloaded) {
-              log(selectedCategory.toString());
-
               return Expanded(
                 child: ProductsGridview(
                   products: state.products,

@@ -1,7 +1,9 @@
+import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
 import 'package:aroom_pro/models/product_model.dart';
 import 'package:aroom_pro/widgets/empty_widget.dart';
 import 'package:aroom_pro/widgets/product_widgets/product_card.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsGridview extends StatelessWidget {
   const ProductsGridview({
@@ -55,7 +57,15 @@ class ProductGridviewBuilder extends StatelessWidget {
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        return ProductCard(product: products[index]);
+        final categories = BlocProvider.of<CategoryCubit>(context)
+            .categories
+            .where((e) => e.id == products[index].categoryId)
+            .toList();
+
+        return ProductCard(
+          product: products[index],
+          categoryName: categories[0].categoryName!,
+        );
       },
     );
   }
