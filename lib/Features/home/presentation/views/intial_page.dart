@@ -4,7 +4,7 @@ import 'package:aroom_pro/Features/home/presentation/views/home_page.dart';
 import 'package:aroom_pro/Features/notifications/presentation/views/notification_page.dart';
 import 'package:aroom_pro/Features/user_profile/presentation/views/user_profile_page.dart';
 import 'package:aroom_pro/core/widgets/empty_widget.dart';
-import 'package:aroom_pro/views/wishlist_page.dart';
+import 'package:aroom_pro/Features/wishlist/presentation/views/wishlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
