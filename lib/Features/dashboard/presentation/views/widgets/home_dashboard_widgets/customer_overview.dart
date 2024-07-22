@@ -1,5 +1,5 @@
-import 'package:aroom_pro/constants/ghaps.dart';
-import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/customer_avatar.dart';
+import 'package:aroom_pro/core/utils/ghaps.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/home_dashboard_widgets/customer_avatar.dart';
 import 'package:flutter/material.dart';
 
 class CustomersOverview extends StatelessWidget {

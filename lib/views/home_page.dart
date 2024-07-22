@@ -1,10 +1,10 @@
 import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
 import 'package:aroom_pro/cubits/product_cubit/cubit/product_cubit.dart';
-import 'package:aroom_pro/widgets/custom_search_bar.dart';
-import 'package:aroom_pro/widgets/fade_widget.dart';
+import 'package:aroom_pro/core/widgets/custom_search_bar.dart';
+import 'package:aroom_pro/core/widgets/fade_widget.dart';
 import 'package:aroom_pro/widgets/home_page_widgets/category_chips.dart';
 import 'package:aroom_pro/widgets/home_page_widgets/image_slider.dart';
-import 'package:aroom_pro/widgets/loading_widget.dart';
+import 'package:aroom_pro/core/widgets/loading_widget.dart';
 import 'package:aroom_pro/widgets/product_widgets/products_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,9 @@
-import 'package:aroom_pro/views/dashboard/add_product_page.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/add_product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/overview.dart';
-import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/popular_products.dart';
-import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/recent_feedback.dart';
-import 'package:aroom_pro/views/dashboard/widgets/sidebar.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/home_dashboard_widgets/overview.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/home_dashboard_widgets/popular_products.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/home_dashboard_widgets/recent_feedback.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/sidebar.dart';
 
 final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 

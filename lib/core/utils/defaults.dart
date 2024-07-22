@@ -1,4 +1,4 @@
-import 'package:aroom_pro/constants/app_colors.dart';
+import 'package:aroom_pro/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppDefaults {

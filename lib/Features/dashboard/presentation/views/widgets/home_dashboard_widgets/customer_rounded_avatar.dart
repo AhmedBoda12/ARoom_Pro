@@ -1,4 +1,4 @@
-import 'package:aroom_pro/constants/defaults.dart';
+import 'package:aroom_pro/core/utils/defaults.dart';
 import 'package:flutter/cupertino.dart';
 
 class CustomerRoundedAvatar extends StatelessWidget {

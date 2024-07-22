@@ -2,7 +2,7 @@ import 'package:aroom_pro/cubits/category_cubit/cubit/category_cubit.dart';
 import 'package:aroom_pro/cubits/product_cubit/cubit/product_cubit.dart';
 import 'package:aroom_pro/views/home_page.dart';
 import 'package:aroom_pro/views/user_profile_page.dart';
-import 'package:aroom_pro/widgets/empty_widget.dart';
+import 'package:aroom_pro/core/widgets/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';

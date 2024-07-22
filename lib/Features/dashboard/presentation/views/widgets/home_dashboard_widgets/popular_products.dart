@@ -1,8 +1,8 @@
-import 'package:aroom_pro/constants/app_colors.dart';
-import 'package:aroom_pro/constants/defaults.dart';
-import 'package:aroom_pro/constants/ghaps.dart';
-import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/popular_product_item.dart';
-import 'package:aroom_pro/views/dashboard/widgets/home_dashboard_widgets/section_title.dart';
+import 'package:aroom_pro/core/utils/app_colors.dart';
+import 'package:aroom_pro/core/utils/defaults.dart';
+import 'package:aroom_pro/core/utils/ghaps.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/home_dashboard_widgets/popular_product_item.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/home_dashboard_widgets/section_title.dart';
 import 'package:flutter/material.dart';
 
 class PopularProducts extends StatelessWidget {

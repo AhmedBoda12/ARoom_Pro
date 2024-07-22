@@ -1,4 +1,4 @@
-import 'package:aroom_pro/constants/defaults.dart';
+import 'package:aroom_pro/core/utils/defaults.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

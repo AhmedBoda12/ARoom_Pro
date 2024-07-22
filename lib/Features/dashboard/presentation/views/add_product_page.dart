@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:aroom_pro/constants/defaults.dart';
-import 'package:aroom_pro/views/dashboard/widgets/add_products_widgets/uplaod_media.dart';
+import 'package:aroom_pro/core/utils/defaults.dart';
+import 'package:aroom_pro/Features/dashboard/presentation/views/widgets/add_products_widgets/uplaod_media.dart';
 import 'package:flutter/material.dart';
 
 class AddProductPage extends StatefulWidget {

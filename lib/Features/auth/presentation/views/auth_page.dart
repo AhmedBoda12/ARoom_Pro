@@ -1,5 +1,5 @@
-import 'package:aroom_pro/widgets/register_widgets/login_form.dart';
-import 'package:aroom_pro/widgets/register_widgets/signup_form.dart';
+import 'package:aroom_pro/Features/auth/presentation/views/widgets/login_form.dart';
+import 'package:aroom_pro/Features/auth/presentation/views/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {

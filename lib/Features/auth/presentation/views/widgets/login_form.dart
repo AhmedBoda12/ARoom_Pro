@@ -1,18 +1,16 @@
-import 'package:aroom_pro/models/user_model.dart';
-import 'package:aroom_pro/widgets/loading_widget.dart';
-import 'package:aroom_pro/widgets/register_widgets/social_buttons.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:aroom_pro/core/widgets/loading_widget.dart';
+import 'package:aroom_pro/Features/auth/presentation/views/widgets/social_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignupForm extends StatefulWidget {
-  const SignupForm({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<SignupForm> createState() => _SignupFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _SignupFormState extends State<SignupForm> {
+class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _enteredEmail = '';
   String _enteredPassword = '';
@@ -34,7 +32,7 @@ class _SignupFormState extends State<SignupForm> {
                   SizedBox(
                     width: double.infinity,
                     child: Text(
-                      'Create Account',
+                      'Welcome Back',
                       textAlign: TextAlign.start,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
@@ -45,7 +43,7 @@ class _SignupFormState extends State<SignupForm> {
                   const SizedBox(
                       width: double.infinity,
                       child: Text(
-                          'Let\'s get started by filling out the form below.')),
+                          'Fill out the information below in order to access your account.')),
                   const SizedBox(
                     height: 20,
                   ),
@@ -123,17 +121,14 @@ class _SignupFormState extends State<SignupForm> {
                     height: 20,
                   ),
                   FilledButton(
-                    onPressed: () async {
+                    onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         setState(() {
                           isLoading = !isLoading;
                         });
-                        _signUpWithEmailAndPassword(
-                          _enteredEmail,
-                          _enteredPassword,
-                          context,
-                        );
+                        _signInWithEmailAndPassword(
+                            _enteredEmail, _enteredPassword, context);
                       }
                     },
                     style: FilledButton.styleFrom(
@@ -142,45 +137,34 @@ class _SignupFormState extends State<SignupForm> {
                       textStyle: Theme.of(context).textTheme.titleMedium,
                       elevation: 3,
                     ),
-                    child: const Text('Get Started'),
+                    child: const Text('Login'),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
                   const Text(
-                    'Or sign up with',
+                    'Or login with',
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 24,
                   ),
-                  const SocialButtons()
+                  const SocialButtons(),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Forgot Password?'),
+                  )
                 ],
               ),
       ),
     );
   }
 
-  void _signUpWithEmailAndPassword(
+  void _signInWithEmailAndPassword(
       String email, String password, BuildContext context) async {
-    final db = FirebaseFirestore.instance;
-
     try {
-      final userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      final UserModel userModel = UserModel(
-        id: userCredential.user!.uid,
-        email: email,
-        role: 'User',
-      );
-
-      await db
-          .collection('Users')
-          .doc(userCredential.user!.uid)
-          .set(userModel.toFirestore());
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
         showDialog(
