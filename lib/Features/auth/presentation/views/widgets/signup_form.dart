@@ -1,4 +1,4 @@
-import 'package:aroom_pro/models/user_model.dart';
+import 'package:aroom_pro/Features/auth/data/models/user_model.dart';
 import 'package:aroom_pro/core/widgets/loading_widget.dart';
 import 'package:aroom_pro/Features/auth/presentation/views/widgets/social_buttons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

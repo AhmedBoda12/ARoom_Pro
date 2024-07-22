@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/category_model.dart';
+import '../../../data/models/category_model.dart';
 
 part 'category_state.dart';
 

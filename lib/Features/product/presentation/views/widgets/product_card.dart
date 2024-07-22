@@ -1,4 +1,4 @@
-import 'package:aroom_pro/models/product_model.dart';
+import 'package:aroom_pro/Features/product/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 

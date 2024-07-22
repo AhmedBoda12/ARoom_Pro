@@ -1,4 +1,4 @@
-import 'package:aroom_pro/models/category_model.dart';
+import 'package:aroom_pro/Features/category/data/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryChips extends StatefulWidget {
