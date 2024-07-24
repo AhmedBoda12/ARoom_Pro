@@ -1,3 +1,4 @@
+import 'package:aroom_pro/Features/Cart/Cart.dart';
 import 'package:aroom_pro/Features/category/presentation/manager/category_cubit/category_cubit.dart';
 import 'package:aroom_pro/Features/product/presentation/manager/product_cubit/product_cubit.dart';
 import 'package:aroom_pro/Features/home/presentation/views/home_page.dart';
@@ -151,8 +152,9 @@ class _IntialPageState extends State<IntialPage> {
             ),
             const WishlistPage(),
             const NotificationPage(),
-            const EmptyWidget(
-                text: 'Your cart is empty', image: 'assets/aroom_logo.png'),
+            CartPage(),
+            // const EmptyWidget(
+            //     text: 'Your cart is empty', image: 'assets/aroom_logo.png'),
           ],
         ),
       ),
