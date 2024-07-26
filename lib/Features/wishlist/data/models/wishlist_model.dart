@@ -1,28 +1,17 @@
-// wishlist_model.dart
-
 class WishListItem {
   final String title;
   final String subtitle;
   final String imageUrl;
+  final double price; // Add a price field
+  final String details; // Add a details field
+  final String? productUrl; // Add an optional product URL field
 
   WishListItem({
     required this.title,
     required this.subtitle,
     required this.imageUrl,
+    required this.price,
+    required this.details,
+    this.productUrl,
   });
 }
-
-// Sample data
-final List<WishListItem> wishlistItems = [
-  WishListItem(
-    title: 'Chair',
-    subtitle:
-        ' chair with gray color the size is 35*40 cm , Delivery from store Offline',
-    imageUrl: 'chair.png',
-  ),
-  WishListItem(
-      title: 'Lamb',
-      subtitle:
-          'Glass Lamp highly recommened for the palaces and has a unique shade, Delivery Online or Offline',
-      imageUrl: 'lamb.png'),
-];
