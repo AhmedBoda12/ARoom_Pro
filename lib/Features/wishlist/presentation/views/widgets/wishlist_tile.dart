@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class WishListTile extends StatelessWidget {
   final WishListItem item;
   final VoidCallback onTap;
-  final VoidCallback onRemove;
+  final VoidCallback onRemove; // Callback for removing the item
   final VoidCallback onAddToCart;
 
   const WishListTile({
@@ -76,7 +76,6 @@ class WishListTile extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          // Add the functionality to view the product in detail
                           Navigator.of(context).pop(); // Close the dialog
                           onTap(); // Trigger the onTap callback
                         },
@@ -116,7 +115,7 @@ class WishListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.deepOrange,
-      margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 7.0),
+      margin: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
@@ -134,7 +133,7 @@ class WishListTile extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     children: [
                       Positioned(
-                        left: -60, // Adjust position to avoid cut-off
+                        left: -10, // Adjust position to avoid cut-off
                         child: Container(
                           width: 135, // Adjust size if necessary
                           height: 135,
@@ -149,8 +148,8 @@ class WishListTile extends StatelessWidget {
                         child: Image.asset(
                           item.imageUrl,
                           fit: BoxFit.cover,
-                          width: 106,
-                          height: 106,
+                          width: 110,
+                          height: 110,
                         ),
                       ),
                     ],
@@ -160,26 +159,35 @@ class WishListTile extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          item.title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0,left: 8.0), // Padding for title
+                          child: Text(
+                            item.title,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        Text(
-                          '${item.price.toStringAsFixed(2)} LE', // Display price
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 3.0, left: 8.0), // Padding for subtitle
+                          child: Text(
+                            '${item.price.toStringAsFixed(2)} LE', // Display price
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        Text(
-                          item.details.length > 30 ? item.details.substring(0, 30) + '...' : item.details, // Show truncated details
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 3.0, left: 8.0), // Padding for details
+                          child: Text(
+                            item.details.length > 30 ? item.details.substring(0, 30) + '...' : item.details, // Show truncated details
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -199,7 +207,9 @@ class WishListTile extends StatelessWidget {
                     ),
                     IconButton(
                       icon: const Icon(Icons.favorite, color: Colors.white),
-                      onPressed: onRemove,
+                      onPressed: () {
+                        onRemove(); // Directly remove the item from the wishlist
+                      },
                     ),
                   ],
                 ),

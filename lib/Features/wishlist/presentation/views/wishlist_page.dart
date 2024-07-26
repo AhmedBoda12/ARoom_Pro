@@ -68,33 +68,10 @@ class _WishListPageState extends State<WishListPage> {
     );
   }
 
-  void _showDeleteOptions(BuildContext context, int index) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Remove Item'),
-          content: const Text('Are you sure you want to remove this item from your wishlist?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                setState(() {
-                  wishlistItems.removeAt(index);
-                });
-              },
-              child: const Text('Remove'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
+  void _removeItem(int index) {
+    setState(() {
+      wishlistItems.removeAt(index);
+    });
   }
 
   void _addToCart(WishListItem item) {
@@ -108,29 +85,28 @@ class _WishListPageState extends State<WishListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wishlist', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepOrange,
-      ),
       body: ListView(
         children: [
           if (wishlistItems.isNotEmpty) ...[
-            const SectionHeader(title: 'Your Wishlist'),
-            ...wishlistItems.map(
-              (item) => WishListTile(
-                item: item,
-                onTap: () {
-                  _showProductDetails(context, item);
-                },
-                onRemove: () {
-                  final index = wishlistItems.indexOf(item);
-                  _showDeleteOptions(context, index);
-                },
-                onAddToCart: () {
-                  _addToCart(item);
-                },
-              ),
-            ),
+            const SectionHeader(title: 'Favourites'),
+            ...wishlistItems.asMap().entries.map(
+              (entry) {
+                final index = entry.key;
+                final item = entry.value;
+                return WishListTile(
+                  item: item,
+                  onTap: () {
+                    _showProductDetails(context, item);
+                  },
+                  onRemove: () {
+                    _removeItem(index); // Directly remove the item
+                  },
+                  onAddToCart: () {
+                    _addToCart(item);
+                  },
+                );
+              },
+            ).toList(),
           ],
           if (wishlistItems.isEmpty)
             const Center(child: Text('No items in your wishlist')),
