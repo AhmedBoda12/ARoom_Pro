@@ -82,7 +82,7 @@ class CartPageState extends State<CartPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    backgroundColor: Theme.of(context).primaryColor,
                     padding:
                         EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                     textStyle:

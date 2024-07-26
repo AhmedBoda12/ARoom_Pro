@@ -1,3 +1,4 @@
+import 'package:aroom_pro/Features/checkout/checkout_page.dart';
 import 'package:aroom_pro/Features/confirmation/widgets/confiramtionitem.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -110,9 +111,10 @@ class ConfirmPage extends StatelessWidget {
               const SizedBox(height: 16),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CheckoutPage.routeName),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    backgroundColor: Theme.of(context).primaryColor,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 110, vertical: 20),
                     textStyle: const TextStyle(
