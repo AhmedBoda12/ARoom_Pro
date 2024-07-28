@@ -149,7 +149,7 @@ class _IntialPageState extends State<IntialPage> {
               ],
               child: const HomePage(),
             ),
-            const WishlistPage(),
+            const WishListPage(),
             const NotificationPage(),
             const EmptyWidget(
                 text: 'Your cart is empty', image: 'assets/aroom_logo.png'),
